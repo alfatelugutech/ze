@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: zerodha-paper-trading-backend
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGODB_URI
+        value: "mongodb+srv://username:password@cluster.mongodb.net/zerodha_paper_trading"
+      - key: JWT_SECRET
+        value: "your_super_secret_jwt_key_change_this_in_production"
+      - key: ALLOWED_ORIGINS
+        value: "*"
+      - key: RATE_LIMIT_WINDOW_MS
+        value: "900000"
+      - key: RATE_LIMIT_MAX_REQUESTS
+        value: "100"
+    healthCheckPath: /api
+    autoDeploy: true
